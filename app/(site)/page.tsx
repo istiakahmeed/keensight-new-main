@@ -17,9 +17,13 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <div id="services">
       <Services />
+      </div>
       <Process />
+      <div id="technologies">
       <TechnologiesWeUtilize />
+      </div>
       <AboutUs />
       <FAQ />
     </main>
