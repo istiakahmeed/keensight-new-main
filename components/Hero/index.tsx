@@ -1,57 +1,97 @@
-import AnimatedTyping from './HeroTypeanimtion';
-import ConsultationButton from "./Button";
+import React from 'react';
+
 import { FaUserTie } from "react-icons/fa";
+import AnimatedTyping from './HeroTypeanimtion';
+import ConsultationButton from './Button';
 
-
-export default function Hero() {
-
+const Hero = () => {
   return (
-    <section className="bg-gray-50 dark:bg-inherit shadow-md rounded-xl overflow-hidden py-10 md:py-20 min-h-screen flex items-center relative">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:items-start gap-8 xl:gap-16">
+    <section className="relative min-h-screen bg-white dark:bg-gray-900">
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)]" />
 
-        {/* Text and Button Section */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-          <h4 className="text-xl sm:text-2xl xl:text-3xl pb-2 sm:pb-4 font-light text-black dark:text-white">
-            🚀 Keensight Analytics
-          </h4>
-          <h1 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white">
-            Empowering Businesses Through
-            <span className="block mt-2 text-blue-600">
-              Advanced Data and AI Solutions
-            </span>
-          </h1>
-          <div className='h-25 sm:h-20'><AnimatedTyping /></div>
+      {/* Main content */}
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left column - Text content */}
+          <div className="flex flex-col items-start space-y-8">
+            {/* Company identifier */}
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                <span className="text-blue-600 dark:text-blue-400">🚀</span>
+              </div>
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                Keensight Analytics
+              </span>
+            </div>
+            
+            {/* Main heading */}
+            <div className="space-y-4">
+              <h1 className="text-4xl lg:text-5xl font-light tracking-tight text-gray-900 dark:text-white">
+                Empowering Businesses Through
+                <span className="block mt-2 font-normal text-blue-600 dark:text-blue-500">
+                  Advanced Data and AI Solutions
+                </span>
+              </h1>
+            </div>
 
-          <div className='mt-16 sm:mt-10'>
-            <ConsultationButton buttonText='Get Expert Advice' icon={<FaUserTie />} />
-          </div>
-        </div>
+            {/* Animated typing */}
+            <div className="h-20 w-full">
+              <AnimatedTyping />
+            </div>
 
-        {/* Image and Text Section */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left mt-10 lg:mt-0">
-          {/* Image Section */}
-          <div className="w-full flex justify-center relative mb-6">
-            <div className="relative aspect-[700/444] w-full max-w-md lg:max-w-none">
-              <img
-                className="rounded-2xl object-cover w-full h-full"
-                src="/images/hero/USA.jpg"
-                alt="Hero"
+            {/* Button with improved design */}
+            <div className="pt-4">
+              <ConsultationButton 
+                buttonText="Get Expert Advice" 
+                icon={<FaUserTie />} 
               />
             </div>
           </div>
 
-          {/* Text Section */}
-          <div className="max-w-md lg:max-w-none">
-            <h2 className="text-xl sm:text-2xl font-semibold mb-2 text-black dark:text-white">
-              Transforming Businesses with AI & Data
-            </h2>
-            <p className="text-sm sm:text-base text-black dark:text-gray-400">
-              At Keensight Analytics, we specialize in transforming businesses by harnessing cutting-edge technologies in generative AI, data analytics, and business intelligence. Our team delivers tailored solutions that enhance operational efficiency, elevate decision-making, and significantly boost your bottom line.
-            </p>
+          {/* Right column - Image */}
+          <div className="relative">
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+              <img
+                src="/images/hero/USA.jpg"
+                alt="Analytics Dashboard"
+                className="w-full h-full object-cover"
+              />
+              
+              {/* Minimal info card */}
+              <div className="absolute left-4 right-4 bottom-4 p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm rounded-lg shadow-lg">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Transforming businesses through cutting-edge AI and data analytics solutions
+                </p>
+              </div>
+            </div>
+
+            {/* Decorative element */}
+            <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-lg -z-10" />
           </div>
         </div>
 
+        {/* Stats strip */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-gray-100 dark:border-gray-800 pt-8">
+          {[
+            { label: 'Data Points Analyzed', value: '1B+' },
+            { label: 'Client Success Rate', value: '98%' },
+            { label: 'AI Models Deployed', value: '50+' }
+          ].map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-2xl font-light text-gray-900 dark:text-white">
+                {stat.value}
+              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
-}
+};
+
+export default Hero;
